@@ -2,9 +2,7 @@ package com.spring.datajpa.app.models.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "clientes")

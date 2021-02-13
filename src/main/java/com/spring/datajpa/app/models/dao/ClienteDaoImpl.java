@@ -1,5 +1,6 @@
 package com.spring.datajpa.app.models.dao;
 
+import com.spring.datajpa.app.models.entity.Cliente;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +19,13 @@ public class ClienteDaoImpl implements IClienteDao{
     @Override
     public List findAll() {
         return em.createQuery("from Cliente").getResultList();
+    }
+
+
+    @Override
+    @Transactional
+    public void save(Cliente cliente) {
+        em.persist(cliente); // Guarda el objeto cliente
     }
 
 }
