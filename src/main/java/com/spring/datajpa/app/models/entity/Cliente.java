@@ -1,6 +1,11 @@
 package com.spring.datajpa.app.models.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -9,22 +14,39 @@ import java.util.Date;
 public class Cliente implements Serializable {
 
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty
     private String firstName;
+
+    @NotEmpty
     private String lastName;
+
+    @NotEmpty
+    @Email
     private String email;
 
+    @NotNull
+    @Column(name = "create_at")
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createAt;
 
+    @PrePersist
+    private void prePersist(){
+        createAt = new Date();
+    }
+
+
 /**  Getters and Setters  ****************************************************************************************************************/
+
+
     public void setId(Long id) {
         this.id = id;
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
