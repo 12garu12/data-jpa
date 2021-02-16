@@ -10,4 +10,6 @@ public interface IClienteDao {
 
    void save(Cliente cliente);
 
+   public Cliente findOne(Long id);
+
 }
